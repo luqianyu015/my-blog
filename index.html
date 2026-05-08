@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>陆千羽的个人网站</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="lnav">
+        <div class="avatar">
+            <img src="image/avatar.jpg" alt="头像">
+        </div>
+        <div class="name">陆千羽</div>
+        <ul>
+            <li><a href="pages/home.html" target="contentFrame">首页</a></li>
+            <li><a href="pages/about.html" target="contentFrame">站长简介</a></li>
+            <li><a href="pages/hobby.html" target="contentFrame">我的爱好</a></li>
+            <li><a href="pages/study.html" target="contentFrame">学习笔记</a></li>
+            <li><a href="pages/works.html" target="contentFrame">作品展示</a></li>
+            <li><a href="pages/message.html" target="contentFrame">留言板</a></li>
+            <li><a href="pages/contact.html" target="contentFrame">联系我</a></li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <div class="banner-text">
+            <h1>欢迎来到我的个人网站</h1>
+            <p>记录日常与成长的小站</p>
+        </div>
+        <div class="time-box">
+            <span id="clock">--:--:--</span>
+        </div>
+    </div>
+
+    <div class="quote-card">
+        <p id="quote-text"></p>
+    </div>
+
+    <div class="content-box">
+    <iframe
+    src="pages/home.html"
+    name="contentFrame"
+    id="contentFrame"
+    frameborder="0"
+  > </iframe>
+    </div>
+</body>
+<script src="js/clock.js"></script>
+<script src="js/quote.js"></script>
+<script src="js/carousel.js"></script>
+</html>
