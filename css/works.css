@@ -1,0 +1,32 @@
+.works-container {
+    padding: 30px;
+}
+
+.works-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    color: #c0ebea;
+}
+
+.works-item img {
+    width: 400px;
+    height:auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.works-text h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.works-text p {
+    margin: 0;
+    line-height: 1.7;
+    font-size: 16px;
+}
