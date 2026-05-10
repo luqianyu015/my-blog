@@ -3,33 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin-top: 50px;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="row-container">
-        <div class="tags-section">
-            <h3>Tags</h3>
-            <div class="tags-container">
-                <span class="tag">睡不醒</span>
+    <div class="banner">
+        <!-- <img src="https://cdn.jsdelivr.net/gh/luqianyu015/my-blog@main/image/banner.webp" alt="Banner Image">  -->
+        <img src="../image/banner.webp" alt="Banner Image">
+    </div>
+    <div class="content">
+        <div class="left-box">
+            <div class="avatar">
+                <img src="../image/avatar.webp" alt="Avatar">
+            </div>
+            <h1 class="name">Blues</h1>
+            <!-- 个性签名 -->
+            <div class="profile-desc">
+                <p class="signature">看见世界，看见自己。</p>
+            </div>
+
+            <!-- 兴趣标签 -->
+            <div class="tags-wrapper">
+                <span class="tag">碎觉</span>
+                <span class="tag">音乐续命</span>
+                <span class="tag">篮球爱好者</span>
+                <span class="tag">编程菜鸟</span>
+                <span class="tag">电影</span>
+                <span class="tag">在路上</span>
+                <span class="tag">吉他</span>
                 <span class="tag">R&B爱好者</span>
-                <span class="tag">弹吉他</span>
-                <span class="tag">看小说</span>
-                <span class="tag">看电影</span>
-                <span class="tag">知识区常客</span>
-                <span class="tag">民谣爱好者</span>
-                <span class="tag">爱听老歌</span>
+                <span class="tag">复古歌单</span>
             </div>
         </div>
+        <div class="right-box">
 
-        <div class="carousel-section">
-        <div class="carousel">
-            <img src="../image/1.png" alt="轮播图1" class="carousel-img active">
-            <img src="../image/2.png" alt="轮播图2" class="carousel-img">
-            <img src="../image/3.png" alt="轮播图3" class="carousel-img">
-            <img src="../image/4.png" alt="轮播图4" class="carousel-img">
-            <img src="../image/5.png" alt="轮播图5" class="carousel-img">
+            <!-- 时间 + 日历 组合组件 -->
+            <div class="time-calendar-box">
+
+                <!-- 时钟 -->
+                    <div class="time-card">
+                        <div id="real-time">00:00</div>
+                    </div>
+
+                <!-- 日历 -->
+                    <div class="calendar-card">
+                        <div class="calendar-head" id="calendar-head">2025年01月 周三</div>
+                        <div class="calendar-week">
+                        <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+                    </div>
+                        <div class="calendar-body" id="calendar-body"></div>
+                    </div>
+            </div>
+
+            <div class="music-player">
+                <!-- 唱臂 -->
+                <div class="tonearm" id="tonearm"></div>
+            
+                <!-- 黑胶唱片 -->
+                <div class="record" id="record">
+                    <div class="album-cover" id="albumCover"></div>
+                </div>
+            
+                <!-- 控制按钮组 -->
+                <div class="controls">
+                    <div class="player-controls">
+                        <i class="fa-solid fa-backward-step control-btn" id="prevBtn"></i>
+                        <i class="fa-solid fa-play control-btn play-icon" id="playBtn"></i>
+                        <i class="fa-solid fa-forward-step control-btn" id="nextBtn"></i>
+                    </div>
+                </div>
+            
+                <!-- 音频元素 -->
+                <audio id="audio">
+            </div>
+
         </div>
-        </div>
+    </div>
 </body>
-<script src="../js/carousel.js"></script>
+<script src="../js/home.js" ></script>
 </html>

@@ -1,50 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>陆千羽的个人网站</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <nav class="lnav">
-        <div class="avatar">
-            <img src="./image/avatar.jpg" alt="头像">
-        </div>
-        <div class="name">陆千羽</div>
-        <ul>
-            <li><a href="./pages/home.html" target="contentFrame">首页</a></li>
-            <li><a href="./pages/about.html" target="contentFrame">站长简介</a></li>
-            <li><a href="./pages/hobby.html" target="contentFrame">我的爱好</a></li>
-            <li><a href="./pages/study.html" target="contentFrame">学习笔记</a></li>
-            <li><a href="./pages/works.html" target="contentFrame">作品展示</a></li>
-            <li><a href="./pages/message.html" target="contentFrame">留言板</a></li>
-            <li><a href="./pages/contact.html" target="contentFrame">联系我</a></li>
-        </ul>
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="./pages/home.html" id="logo" target="content">LQY</a></li>
+        <li><a href="./pages/about.html" target="content">About Me</a></li>
+        <li><a href="./pages/study.html" target="content">Notes</a></li>
+        <li><a href="./pages/projects.html" target="content">Projects</a></li>
+      </ul>
+
+      <div class="social-links">
+        <a
+          href="https://github.com/luqianyu015"
+          target="_blank"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://space.bilibili.com/1256180425?spm_id_from=333.1007.0.0"
+          target="_blank"
+          aria-label="Bilibili"
+        >
+          <i class="fab fa-bilibili"></i>
+        </a>
+      </div>
     </nav>
-    <div class="banner">
-        <div class="banner-text">
-            <h1>欢迎来到我的个人网站</h1>
-            <p>记录日常与成长的小站</p>
-        </div>
-        <div class="time-box">
-            <span id="clock">--:--:--</span>
-        </div>
-    </div>
 
-    <div class="quote-card">
-        <p id="quote-text"></p>
+    <div class="iframe-wrapper">
+    <iframe 
+        name="content" 
+        src="pages/home.html" 
+        width="100%" 
+        frameborder="0">
+    </iframe>
     </div>
-
-    <div class="content-box">
-    <iframe
-    src="./pages/home.html"
-    name="contentFrame"
-    id="contentFrame"
-    frameborder="0"
-  > </iframe>
-    </div>
-</body>
-<script src="./js/clock.js"></script>
-<script src="./js/quote.js"></script>
-<script src="./js/carousel.js"></script>
+  </body>
 </html>
