@@ -21,7 +21,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    z-index: 999; /* 确保导航栏在最上层 */
+    z-index: 999;
     box-sizing: border-box;
 }
 
@@ -218,13 +218,14 @@ iframe[name="content"] {
     z-index: 100;
     display: flex;
     min-height: 500px;
-    gap: 20px;
+    gap: 40px;
 } 
 
 .time-card,
 .calendar-card,
 .todo-card,
 .music-player-box,
+.widget-container,
 .quote-box,
 .record,
 .skill-card,
@@ -249,6 +250,7 @@ iframe[name="content"] {
 .music-player-box::before,
 .quote-box::before,
 .record::before,
+.widget-container::before,
 .skill-card::before,
 .playlist::before {
     content: "";
@@ -267,11 +269,12 @@ iframe[name="content"] {
 
 /* 统一 hover 效果 */
 .time-card:hover,
+.widget-container:hover,
 .calendar-card:hover,
 .todo-card:hover,
 .record:hover,
 .skill-card:hover,
-.playlist,
+.playlist:hover,
 .music-player-box:hover,
 .quote-box:hover {
     box-shadow: 0 0 8px rgba(255,255,255,0.25),
@@ -423,6 +426,9 @@ iframe[name="content"] {
   font-weight: 500;
 }
 
+.box2{
+  gap: 20px;
+}
 .music-player-box {
   display: flex;
   justify-content: center;
@@ -728,7 +734,7 @@ html, body {
 
 /* 名言组件样式 */
 .quote-box {
-  margin-top: 400px;
+  margin-top: 40px;
   padding: 15px;
   text-align: center;
   background: #00000048;
@@ -742,4 +748,71 @@ html, body {
   background: linear-gradient(90deg, #ffffff, #6d6b6d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.widget-container {
+  display: flex;
+  width: 260px;
+  gap: 40px;
+  /* 图标之间的间距，和你截图里差不多 */
+  padding: 20px;
+  background: #00000048;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 单个图标卡片 */
+.site-icon-card {
+  width: 40px;
+  height:40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+/*  hover 效果，点击时会有反馈 */
+.site-icon-card:hover {
+  transform: scale(1.05);
+}
+
+.site-icon-card:active {
+  transform: scale(0.95);
+}
+
+/* 图标方块 */
+.icon-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 24px;
+  /* 圆角和你截图里一致 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 图标下方的文字 */
+.site-name {
+  color: white;
+  font-size: 8px;
+  text-align: center;
+}
+
+.icon-box{
+
+}
+
+.icon-box img {
+  width: 30px;
+  height: 30px;
+  border-radius: 18px;
 }
