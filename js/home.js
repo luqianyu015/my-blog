@@ -255,3 +255,8 @@ function rotateQuote() {
 // 5秒轮换一次
 setInterval(rotateQuote, 5000);
 rotateQuote();
+
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.classList.add('loaded');
+  });
