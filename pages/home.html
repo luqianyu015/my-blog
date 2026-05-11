@@ -60,30 +60,73 @@
                     </div>
                         <div class="calendar-body" id="calendar-body"></div>
                     </div>
-            </div>
-
-            <div class="music-player">
-                <!-- 唱臂 -->
-                <div class="tonearm" id="tonearm"></div>
-            
-                <!-- 黑胶唱片 -->
-                <div class="record" id="record">
-                    <div class="album-cover" id="albumCover"></div>
-                </div>
-            
-                <!-- 控制按钮组 -->
-                <div class="controls">
-                    <div class="player-controls">
-                        <i class="fa-solid fa-backward-step control-btn" id="prevBtn"></i>
-                        <i class="fa-solid fa-play control-btn play-icon" id="playBtn"></i>
-                        <i class="fa-solid fa-forward-step control-btn" id="nextBtn"></i>
+                <!-- todolist -->
+                    <div class="todo-card">
+                        <div class="todo-title">Todo List</div>
+                        <input type="text" class="todo-input" id="todo-input" placeholder="Add a new task...">
+                        <ul class="todo-list" id="todo-list"></ul>
                     </div>
-                </div>
+            </div>
+            <div class="music-player-box">
+                <div class="music-player">
+                    <!-- 唱臂 -->
+                    <div class="tonearm" id="tonearm"></div>
             
-                <!-- 音频元素 -->
-                <audio id="audio">
+                    <!-- 黑胶唱片 -->
+                    <div class="record" id="record">
+                        <div class="album-cover" id="albumCover"></div>
+                    </div>
+            
+                    <!-- 控制按钮组 -->
+                    <div class="controls">
+                        <div class="player-controls">
+                            <i class="fa-solid fa-backward-step control-btn" id="prevBtn"></i>
+                            <i class="fa-solid fa-play control-btn play-icon" id="playBtn"></i>
+                            <i class="fa-solid fa-forward-step control-btn" id="nextBtn"></i>
+                        </div>
+                    </div>
+
+                    <div class="quote-box">
+                        <p class="quote-text" id="quote-text">Music is the refuge of the soul-----</p>
+                    </div>
+            
+                    <!-- 音频元素 -->
+                    <audio id="audio">
+                </div>
             </div>
 
+            <div class="playlist" id="playlist">
+                <div class="playlist-item active" data-index="0">Weekend - Starboy</div>
+                <div class="playlist-item" data-index="1">Coldplay - Yellow</div>
+                <div class="playlist-item" data-index="2">Lost Frequencies - Reality</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-title">Skills</div>
+                <div>HTML/CSS/JavaScript</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 60%"></div>
+                </div>
+                <div>Python</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                </div>
+                <div>C/C++</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 30%"></div>
+                </div>
+                <div>Git</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 25%"></div>
+                </div>
+                <div>java</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 10%"></div>
+                </div>
+                <div>SpringBoot</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 5%"></div>
+            </div>
         </div>
     </div>
 </body>

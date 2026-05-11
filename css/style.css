@@ -170,6 +170,43 @@ iframe[name="content"] {
     flex-direction: column;
     align-items: center;
     height: 500px;
+    /* 核心发光边框样式 */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    /* 性能优化 */
+    will-change: box-shadow, transform;
+    transform: translateZ(0);
+    /* 基础发光 */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1), 
+                inset 0 0 8px rgba(255, 255, 255, 0.05);
+    /* 过渡动画（保证流畅） */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 左侧盒子伪元素 - 渐变发光边框 */
+.left-box::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.2), 
+                rgba(150, 150, 255, 0.2), 
+                rgba(200, 100, 200, 0.2));
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+/* 左侧盒子hover效果 */
+.left-box:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25), 
+                inset 0 0 12px rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .right-box{
@@ -181,6 +218,77 @@ iframe[name="content"] {
     z-index: 100;
     display: flex;
     min-height: 500px;
+    gap: 20px;
+} 
+
+.time-card,
+.calendar-card,
+.todo-card,
+.music-player-box,
+.quote-box,
+.record,
+.skill-card,
+.playlist {
+    background: #00000048;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    will-change: box-shadow, transform;
+    transform: translateZ(0);
+    box-shadow: 0 0 4px rgba(255,255,255,0.1),
+                inset 0 0 4px rgba(255,255,255,0.05);
+    transition: 0.4s ease;
+    animation: glow-breath 2s ease-in-out infinite;
+}
+
+/* 统一发光边框 */
+.time-card::before,
+.calendar-card::before,
+.todo-card::before,
+.music-player-box::before,
+.quote-box::before,
+.record::before,
+.skill-card::before,
+.playlist::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg,
+                rgba(255,255,255,0.2),
+                rgba(150,150,255,0.2),
+                rgba(200,100,200,0.2));
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0.7;
+    background-size: 200% 200%;
+    animation: borderGlow 8s infinite;
+}
+
+/* 统一 hover 效果 */
+.time-card:hover,
+.calendar-card:hover,
+.todo-card:hover,
+.record:hover,
+.skill-card:hover,
+.playlist,
+.music-player-box:hover,
+.quote-box:hover {
+    box-shadow: 0 0 8px rgba(255,255,255,0.25),
+                inset 0 0 6px rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.25);
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes glow-breath {
+  0%  { box-shadow: 0 0 4px rgba(255,255,255,0.1), inset 0 0 4px rgba(255,255,255,0.05); }
+  50% { box-shadow: 0 0 10px rgba(255,255,255,0.2), inset 0 0 6px rgba(255,255,255,0.1); }
+  100%{ box-shadow: 0 0 4px rgba(255,255,255,0.1), inset 0 0 4px rgba(255,255,255,0.05); }
 }
 
 .name {
@@ -206,7 +314,7 @@ iframe[name="content"] {
   line-height: 1.6;
   letter-spacing: 1px;
   /* 柔和渐变文字 */
-  background: linear-gradient(90deg, #ffffff, #e39ddc);
+  background: linear-gradient(90deg, #ffffff, #7b737a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -251,12 +359,13 @@ iframe[name="content"] {
 
 /* 时钟卡片 */
 .time-card {
-  background: #2a2a2a6b;
+  background: #00000048;
   border-radius: 18px;
   padding: 20px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 #real-time {
   font-size: 50px;
@@ -268,7 +377,7 @@ iframe[name="content"] {
 
 /* 日历卡片 */
 .calendar-card {
-  background: #2a2a2a6b;
+  background: #00000048;
   border-radius: 18px;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -314,12 +423,23 @@ iframe[name="content"] {
   font-weight: 500;
 }
 
+.music-player-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  border-radius: 25px;
+  background:#00000048;
+  width: 400px;
+  height: 450px;
+}
+
 .music-player {
   position: relative;
   width: 280px;
   height: 280px;
   margin: 40px;
-  background: #ff00006a;
+  background: #6f6e6e39;
   border-radius: 50%;
 }
 
@@ -333,7 +453,7 @@ iframe[name="content"] {
   background: #fff;
   border-radius: 3px;
   transform-origin: top left;
-  transform: rotate(20deg);
+  transform: rotate(15deg);
   transition: transform 0.3s ease;
   z-index: 10;
 }
@@ -394,8 +514,8 @@ iframe[name="content"] {
 }
 
 .album-cover {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
@@ -497,4 +617,129 @@ html, body {
 .iframe-wrapper {
   scrollbar-width: thin; /* Firefox兼容：细滚动条 */
   scrollbar-color: #666 #2a2a2a; /* Firefox：滑块颜色 轨道颜色 */
+}
+
+/* 歌单容器 */
+.playlist {
+  background: #00000048;
+  border-radius: 10px;
+  padding: 15px;
+  width: 260px;
+  height: 400px;
+  margin-top: -50px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+/* 歌单项 */
+.playlist-item {
+  color: #fff;
+  font-size: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+/* 最后一项去掉下划线 */
+.playlist-item:last-child {
+  border-bottom: none;
+}
+/* 高亮样式（和签名渐变呼应） */
+.playlist-item.active {
+  color: #e39ddc;
+  font-weight: 500;
+}
+/* hover效果 */
+.playlist-item:hover {
+  color: #ccc;
+}
+
+/* 技能卡片样式 */
+.skill-card {
+  background: #00000048;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 280px;
+}
+.skill-title {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+.skill-bar {
+  height: 6px;
+  background: #2a2a2a;
+  border-radius: 3px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #fff, #3c3c3c);
+}
+
+/* 待办清单样式 */
+.todo-card {
+  background: #00000048;
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 260px;
+}
+.todo-title {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+.todo-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.todo-item {
+  color: #fff;
+  font-size: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo-item button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* 名言组件样式 */
+.quote-box {
+  margin-top: 400px;
+  padding: 15px;
+  text-align: center;
+  background: #00000048;
+  border-radius: 10px;
+}
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  background: linear-gradient(90deg, #ffffff, #6d6b6d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
