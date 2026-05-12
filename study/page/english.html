@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="">
+<link rel="stylesheet" href="../../css/study.css">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习笔记</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- 左侧多级目录 -->
+        <div class="sidebar">
+            <ul class="menu">
+                <!-- 高数 -->
+                <li class="menu-item">
+                    <div class="menu-title">
+                        <span class="icon">▶</span>高等数学
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="notes/math/高数-函数与极限.html" target="noteFrame">1. 函数与极限</a></li>
+                        <li><a href="notes/math/高数-导数与微分.html" target="noteFrame">2. 导数与微分</a></li>
+                        <li><a href="notes/math/高数-中值定理.html" target="noteFrame">3. 微分中值定理</a></li>
+                        <li><a href="notes/math/高数-不定积分.html" target="noteFrame">4. 不定积分</a></li>
+                    </ul>
+                </li>
+
+                <!-- 线性代数 -->
+                <li class="menu-item">
+                    <div class="menu-title">
+                        <span class="icon">▶</span>线性代数
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="notes/math/线代-行列式.html" target="noteFrame">1. 行列式</a></li>
+                        <li><a href="notes/math/线代-矩阵.html" target="noteFrame">2. 矩阵</a></li>
+                    </ul>
+                </li>
+
+                <!-- 概率论 -->
+                <li class="menu-item">
+                    <div class="menu-title">
+                        <span class="icon">▶</span>概率论
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="notes/math/概率-随机事件.html" target="noteFrame">1. 随机事件</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- 右侧：显示你的 markdown 转的 html -->
+        <div class="content">
+            <iframe name="noteFrame" src="../study/notes/math/高数-函数与极限.html"></iframe>
+        </div>
+    </div>
+</body>
+<script src="../../js/study.js"></script>
+</html>

@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/about.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习笔记</title>
+    <!-- 只在主页面引入一次 CSS，所有子页面共用 -->
+    <link rel="stylesheet" href="/css/study.css">
 </head>
+<body>
+    <!-- 顶部导航栏：固定在页面顶部，永远不刷新 -->
+    <div class="header">
+        <div class="logo">学习笔记</div>
+        <div class="nav">
+            <a href="javascript:switchPage('plan')" class="active">计划书</a>
+            <a href="javascript:switchPage('math')" >数学</a>
+            <a href="javascript:switchPage('english')">英语</a>
+            <a href="javascript:switchPage('web-frontend')">网页</a>
+        </div>
+    </div>
 
-<body style="background-image: url('../image/background.png'); background-size: cover; background-attachment: fixed;">
-        
+    <!-- 主体：用iframe加载不同学科的笔记页面 -->
+    <div class="main-container">
+        <iframe id="noteFrame" src="/study/page/plan.html" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        // 切换iframe的src，实现无刷新跳转
+        function switchPage(subject) {
+            const frame = document.getElementById('noteFrame');
+            // 这里的路径要和你的文件位置对应
+            let pageUrl;
+            switch(subject) {
+                case 'plan':
+                    pageUrl = '/study/page/plan.html';
+                    break;
+                case 'math':
+                    pageUrl = '/study/page/math.html';
+                    break;
+                case 'english':
+                    pageUrl = '/study/page/english.html';
+                    break;
+                case 'web-frontend':
+                    pageUrl = '/study/page/web-frontend.html';
+                    break;
+                default:
+                    pageUrl = '/study/page/plan.html';
+            }
+            frame.src = pageUrl;
+
+            // 给当前导航项加上高亮
+            document.querySelectorAll('.nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
