@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学习笔记</title>
     <!-- 只在主页面引入一次 CSS，所有子页面共用 -->
-    <link rel="stylesheet" href="/css/study.css">
+    <link rel="stylesheet" href="../css/study.css">
 </head>
 <body>
     <!-- 顶部导航栏：固定在页面顶部，永远不刷新 -->
@@ -21,7 +21,7 @@
 
     <!-- 主体：用iframe加载不同学科的笔记页面 -->
     <div class="main-container">
-        <iframe id="noteFrame" src="/study/page/plan.html" frameborder="0"></iframe>
+        <iframe id="noteFrame" src="../study/page/plan.html" frameborder="0"></iframe>
     </div>
 
     <script>
@@ -32,19 +32,19 @@
             let pageUrl;
             switch(subject) {
                 case 'plan':
-                    pageUrl = '/study/page/plan.html';
+                    pageUrl = '../study/page/plan.html';
                     break;
                 case 'math':
-                    pageUrl = '/study/page/math.html';
+                    pageUrl = '../study/page/math.html';
                     break;
                 case 'english':
-                    pageUrl = '/study/page/english.html';
+                    pageUrl = '../study/page/english.html';
                     break;
                 case 'web-frontend':
-                    pageUrl = '/study/page/web-frontend.html';
+                    pageUrl = '../study/page/web-frontend.html';
                     break;
                 default:
-                    pageUrl = '/study/page/plan.html';
+                    pageUrl = '../study/page/plan.html';
             }
             frame.src = pageUrl;
 
