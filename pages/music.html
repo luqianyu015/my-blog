@@ -1,12 +1,313 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/about.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的专属音乐空间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            color: #e0e0e0;
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .music-section {
+            margin: 50px;
+            background-color: #e0e0e011;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #ffffffc9;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .singer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .singer-box {
+            background: #d2d2d267;
+            border-radius: 25px;
+            padding: 12px;
+            margin: 30px;
+            transition: 0.2s;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .singer-box:hover {
+            background: #71717181;
+            transform: scale(1.02);
+        }
+
+        .singer-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 5px;
+        }
+
+        .singer-name {
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-list {
+            width: 100%;
+            max-height: 140px;
+            overflow-y: auto;
+            background: #f4f4f48a;
+            color: #000000;
+            border-radius: 10px;
+            font-size: 11px;
+            padding: 5px;
+            margin-top: 5px;
+            list-style: none;
+        }
+
+        .song-item {
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        .song-item:hover {
+            background: #444;
+            border-radius: 10px;
+        }
+
+        .audio-player {
+            width: 80%;
+            height: 28px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .player-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 90%;
+            padding: 8px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5%;
+            opacity: 0.6;
+        }
+
+        #global-player {
+            width: 100%;
+            height: 30px;
+        }
+
+        /* 全局美化滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #252525;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #65656582;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c97b1;
+        }
+
+    </style>
 </head>
 
 <body style="background-image: url('../image/background.png'); background-size: cover; background-attachment: fixed;">
-        
+
+    <div class="music-section">
+        <h2 class="section-title">华语歌手</h2>
+        <div class="singer-grid" id="chinese-singers"></div>
+    </div>
+
+    <div class="music-section">
+        <h2 class="section-title">外语歌手</h2>
+        <div class="singer-grid" id="foreign-singers"></div>
+    </div>
+
+    <div class="player-container">
+        <audio id="global-player" controls></audio>
+    </div>
+
+    <script>
+        const player = document.getElementById('global-player');
+
+        // 全部替换为可播放的免费音乐链接
+        const chineseSingers = [
+            {
+                name: "陶喆", img: "../image/singer/1.PNG", songs: [
+                    { name: "爱很简单", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/1.mp3" },
+                    { name: "普通朋友", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/2.mp3" },
+                    { name: "小镇姑娘", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/3.mp3" },
+                    { name: "就是爱你", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/4.mp3" },
+                    { name: "寂寞的季节", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/5.mp3" },
+                ]
+            },
+            {
+                name: "赵雷", img: "../image/singer/2.PNG", songs: [
+                    { name: "成都", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/6.mp3" },
+                    { name: "南方姑娘", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/7.mp3" },
+                    { name: "理想", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/8.mp3" },
+                ]
+            },
+            {
+                name: "周杰伦", img: "../image/singer/3.PNG", songs: [
+                    { name: "晴天", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/9.mp3" },
+                    { name: "七里香", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/10.mp3" },
+                    { name: "青花瓷", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/11.mp3" },
+                ]
+            },
+            {
+                name: "李荣浩", img: "../image/singer/4.PNG", songs: [
+                    { name: "李白", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/12.mp3" },
+                    { name: "年少有为", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/13.mp3" },
+                ]
+            },
+            {
+                name: "林俊杰", img: "../image/singer/5.PNG", songs: [
+                    { name: "江南", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/14.mp3" },
+                    { name: "小酒窝", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/15.mp3" },
+                ]
+            },
+            {
+                name: "许巍", img: "../image/singer/6.PNG", songs: [
+                    { name: "蓝莲花", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/16.mp3" },
+                    { name: "曾经的你", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/17.mp3" },
+                ]
+            },
+            {
+                name: "方大同", img: "../image/singer/7.PNG", songs: [
+                    { name: "红豆", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/18.mp3" },
+                ]
+            },
+            {
+                name: "陈奕迅", img: "../image/singer/8.PNG", songs: [
+                    { name: "浮夸", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/19.mp3" },
+                    { name: "十年", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/20.mp3" },
+                ]
+            },
+            {
+                name: "邓紫棋", img: "../image/singer/9.PNG", songs: [
+                    { name: "光年之外", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/21.mp3" },
+                ]
+            },
+            {
+                name: "张学友", img: "../image/singer/10.PNG", songs: [
+                    { name: "吻别", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/22.mp3" },
+                ]
+            },
+            {
+                name: "Beyond", img: "../image/singer/11.PNG", songs: [
+                    { name: "海阔天空", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/23.mp3" },
+                ]
+            },
+            {
+                name: "毛不易", img: "../image/singer/12.PNG", songs: [
+                    { name: "消愁", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/24.mp3" },
+                ]
+            },
+            {
+                name: "郭顶", img: "../image/singer/13.PNG", songs: [
+                    { name: "水星记", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/25.mp3" },
+                ]
+            },
+            {
+                name: "许嵩", img: "../image/singer/14.PNG", songs: [
+                    { name: "素颜", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/26.mp3" },
+                ]
+            }
+        ];
+
+        const foreignSingers = [
+            {
+                name: "Justin Bieber", img: "../image/singer/a1.PNG", songs: [
+                    { name: "Let Me Love You", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/f1.mp3" },
+                ]
+            },
+            {
+                name: "The Weeknd", img: "../image/singer/a2.PNG", songs: [
+                    { name: "Blinding Lights", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/f2.mp3" },
+                ]
+            },
+            {
+                name: "Michael Jackson", img: "../image/singer/a3.PNG", songs: [
+                    { name: "Heal The World", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/f3.mp3" },
+                ]
+            },
+            {
+                name: "Queen", img: "../image/singer/a4.PNG", songs: [
+                    { name: "Bohemian Rhapsody", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/f4.mp3" },
+                ]
+            },
+            {
+                name: "Coldplay", img: "../image/singer/a5.PNG", songs: [
+                    { name: "Yellow", url: "https://demo-1251054807.cos.ap-beijing.myqcloud.com/music/f5.mp3" },
+                ]
+            }
+        ];
+
+        function renderSingers(containerId, singers) {
+            const container = document.getElementById(containerId);
+            singers.forEach(singer => {
+                const box = document.createElement('div');
+                box.className = 'singer-box';
+
+                let list = '';
+                singer.songs.forEach((song, index) => {
+                    list += `<li class="song-item" onclick="playSong2('${song.url}')">${index + 1}. ${song.name}</li>`;
+                });
+
+                box.innerHTML = `
+                    <img src="${singer.img}" alt="${singer.name}" class="singer-img">
+                    <div class="singer-name">${singer.name}</div>
+                    <ul class="song-list">${list}</ul>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function playSong2(url) {
+            if (url) {
+                player.src = url;
+                player.play();
+            }
+        }
+
+        renderSingers('chinese-singers', chineseSingers);
+        renderSingers('foreign-singers', foreignSingers);
+    </script>
 </body>
+
 </html>
