@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>笔记查看</title>
+  <!-- 核心：专业Markdown渲染引擎（支持公式） -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/markdown-it/14.1.0/markdown-it.min.js"></script>
+  <!-- 代码高亮 -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <!-- MathJax 3 公式渲染（自动识别原生LaTeX，无需$包裹） -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+  
+  <style>
+    .markdown {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px 30px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="markdown" id="content"></div>
+
+  <script>
+    // 初始化Markdown渲染器
+    const md = window.markdownit({
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(str, { language: lang }).value;
+          } catch (__) {}
+        }
+        return '';
+      }
+    });
+
+    // 获取MD文件路径
+    const params = new URLSearchParams(location.search);
+    const mdPath = params.get('md');
+
+    if (mdPath) {
+      fetch(mdPath)
+        .then(res => res.text())
+        .then(text => {
+          // 渲染Markdown
+          document.getElementById('content').innerHTML = md.render(text);
+          // 自动渲染所有数学公式（核心！无需$包裹）
+          MathJax.typeset();
+        });
+    }
+  </script>
+</body>
+</html>

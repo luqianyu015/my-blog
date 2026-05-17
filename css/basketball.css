@@ -12,38 +12,88 @@
             flex-direction: column;
         }
 
-        .shoe-image {
-            width: 400px;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            object-fit: cover;
-        }
+.shoe-image {
+    width: 400px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+}
 
-        .shoe-info h2 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.6rem;
-        }
+.shoe-info h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.6rem;
+}
 
-        .price {
-            font-size: 1.2rem;
-            color: #ffcc00;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
+.price {
+    font-size: 1.2rem;
+    color: #ffcc00;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
 
-        .review-section h3 {
-            margin: 1.5rem 0 0.8rem 0;
-            font-size: 1.2rem;
-            border-left: 4px solid #ffcc00;
-            padding-left: 0.6rem;
-        }
+.review-section h3 {
+    margin: 1.5rem 0 0.8rem 0;
+    font-size: 1.2rem;
+    border-left: 4px solid #ffcc00;
+    padding-left: 0.6rem;
+}
 
-        .review-text {
-            line-height: 1.7;
-            color: #ddd;
-        }
+.review-text {
+    line-height: 1.7;
+    color: #ddd;
+}
 
-        .container{
-            display: flex;
-            flex-direction: column;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 深色油画质感背景 */
+  background: linear-gradient(135deg, #1a1a1d, #2c2c34);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* 平滑消失动画 */
+  transition: all 0.6s ease;
+}
+
+/* 加载动画：音乐感旋转圆环 */
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+  /* 艺术金色/银色，适配油画音乐风 */
+  border-top: 4px solid #d4af37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+/* 加载文字：艺术感 */
+.loading-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-family: serif;
+}
+
+/* 旋转动画 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 加载完成：隐藏 */
+#loading-screen.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
